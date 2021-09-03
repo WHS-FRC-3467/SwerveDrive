@@ -28,7 +28,7 @@ public class SwerveDriveCommand extends CommandBase {
   @Override
   public void execute() {
     
-    if(controller.getY(GenericHID.Hand.kLeft) < 0.05)
+    if(Math.abs(controller.getY(GenericHID.Hand.kLeft)) < 0.05)
     {
       ySpeedCon = 0.0;
     }
@@ -36,7 +36,7 @@ public class SwerveDriveCommand extends CommandBase {
       ySpeedCon = controller.getY(GenericHID.Hand.kLeft);
     }
 
-    if(controller.getX(GenericHID.Hand.kLeft)< 0.05)
+    if(Math.abs(controller.getX(GenericHID.Hand.kLeft))< 0.05)
     {
       xSpeedCon = 0.0;
     }
@@ -44,7 +44,7 @@ public class SwerveDriveCommand extends CommandBase {
       xSpeedCon = controller.getX(GenericHID.Hand.kLeft);
     }
 
-    if(controller.getX(GenericHID.Hand.kRight)< 0.05)
+    if(Math.abs(controller.getX(GenericHID.Hand.kRight))< 0.05)
     {
       rotation = 0.0;
     }
