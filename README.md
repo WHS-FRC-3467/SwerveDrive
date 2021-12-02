@@ -1,27 +1,33 @@
-<H1> MK3 swerve calibration instructions</h1>
-<b>Please read through entire readme before deploying to robot.</b>
-<ol>
-  <li>Make sure your firmware is relitivly up to date!</li>
-      <ol>
-      <li> Our bots current firmware versions:</li>
-      <li> Roborio: 2021_v3</li>
-      <li> Falcon500's: 21.0.0</li>
-      <li> CANCoder's: 20.1 </li>
-      </ol>
-  <li>While you are in the phoenix tuner make sure you know what each motor and cancoders CAN ids are.</li>
-  <li>Clone this repository!</li>
-  <li>Enter the CAN id's into lines 34-49 in SwerveDrivetrain.java. It is at this point you will choose a "front". This is important for later.</li>
-  <li><b>Comment out line 109 in SwerveDrivetrain.java in addtion to lines 96 and 101 in SwerveModuleMK3.java</b></li>
-  <li>Deploy to robot and enable.</li>
-  <li>turn each wheel to point to the "front" you have choosen.</li>
-  <li>Open the smartdashboard and record the numbers in the boxes numbered 0-3.</li>
-  <li> Enter the numbers gathered above into their corresponding offset in SwerveDrivetrain.java lines 29-32.
-      <ol>
-      <li> 0: front left</li>
-      <li> 1: front right</li>
-      <li> 2: back left</li>
-      <li> 3: back right</li>
-      </ol>
-   <li>Uncomment line 109 in SwerveDrivetrain.java in addtion to lines 96 and 101 in SwerveModuleMK3.java</li>
-  <li> Happy swerving!</li>
-</ol>
+### Configuring the code for your robot
+
+1. Set your team number.
+2. Read through and configure `frc.robot.Constants`. Parts of the code that need to be configured for your specific
+robot setup are marked with comments starting with `FIXME`.
+> Don't configure the `*_MODULE_STEER_OFFSET` constants yet. Those are configured after code is deployed.
+4. Read through and configure `frc.robot.subsystems.DrivetrainSubsystem`. Parts of the code that need to be configured
+for your specific robot setup are marked with comments starting with `FIXME`.
+5. At this point deploy the code. If it endlessly crashes at startup make sure your CAN IDs are properly set and make
+sure you are using the proper swerve module configurations for your hardware.
+
+### Setting up module offsets
+
+Now that we have code running on the robot, we can set up our module steering offsets. In order to do this we must have
+our encoder values displayed to the dashboard.
+
+> Before setting up module offsets ensure each offset is set to `-Math.toRadians(0.0)` and that code is deployed to the
+> robot. This must be done each time offsets are determined.
+
+1. Turn the robot on its side, so it is easy to move each module by hand.
+
+> By default, module sensor information is displayed in the `Drivetrain` tab on ShuffleBoard.
+
+2. Rotate each module so the bevel gear on the sides of each wheel are pointing to the robot's left.
+> When aligning the wheels they must be as straight as possible. It is recommended to use a long straight edge such as
+> a piece of 2x1 in order to make the wheels straight.
+
+3. Record the angles of each module using the reading displayed on the dashboard.
+
+4. Set the values of the `*_MODULE_STEER_OFFSET` constants in `Constants` to `-Math.toRadians(<the angle you recorded>)`
+5. Re-deploy and try to drive the robot forwards. All wheels should stay parallel to each other.
+6. Make sure all the wheels are spinning in the correct direction. If not, add 180 degrees to the offset of each wheel 
+that is spinning in the incorrect direction. (I.e. `-Math.toRadians(<angle> + 180.0))`)
