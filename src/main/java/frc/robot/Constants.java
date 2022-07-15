@@ -35,14 +35,7 @@ public final class Constants {
         public static final int BACK_RIGHT_MODULE_STEER_ENCODER = 12; 
         
 		//non drivebase CAN IDs
-        public static final int LOWER_TOWER_MOTOR = 13;
-        public static final int UpperTowerMotor = 14;
-        public static final int ShooterLeft = 15; 
-        public static final int ShooterRight = 16;
-        public static final int ClimberLeft = 17;
-        public static final int ClimberRight = 18;
-        public static final int IntakeMotor = 19;
-        public static final int DRIVETRAIN_PIGEON_ID = 20; 
+        public static final int DRIVETRAIN_PIGEON_ID = 13; 
     }
 
     public static final class PWMConstants{
@@ -93,10 +86,10 @@ public final class Constants {
             new Translation2d(-RobotConstants.DRIVETRAIN_TRACKWIDTH_METERS / 2.0, -RobotConstants.DRIVETRAIN_WHEELBASE_METERS / 2.0)
         );
 
-        public static final double FRONT_LEFT_MODULE_STEER_OFFSET = -Math.toRadians(202.5);
-        public static final double FRONT_RIGHT_MODULE_STEER_OFFSET = -Math.toRadians(103.7);
-        public static final double BACK_LEFT_MODULE_STEER_OFFSET = -Math.toRadians(140.22); 
-        public static final double BACK_RIGHT_MODULE_STEER_OFFSET = -Math.toRadians(131.1);
+        public static final double FRONT_LEFT_MODULE_STEER_OFFSET = -Math.toRadians(277.1);
+        public static final double FRONT_RIGHT_MODULE_STEER_OFFSET = -Math.toRadians(161.8);
+        public static final double BACK_LEFT_MODULE_STEER_OFFSET = -Math.toRadians(116.7); 
+        public static final double BACK_RIGHT_MODULE_STEER_OFFSET = -Math.toRadians(284.1);
 
         // Limelight auto aim X-axis target tolerance. This is the number of degrees
         // from perfect center that the robot will consider the BasicLimelightAim

@@ -40,8 +40,8 @@ public class SwerveDrive extends CommandBase{
     @Override
     public void execute() {
         //modifys axis of controlls to ease control
-        ModifyAxis m_axisX = new ModifyAxis(m_translationXSupplier.getAsDouble(), 2);
-        ModifyAxis m_axisY = new ModifyAxis(m_translationYSupplier.getAsDouble(), 2);
+        ModifyAxis m_axisY = new ModifyAxis(m_translationXSupplier.getAsDouble(), 2);
+        ModifyAxis m_axisX = new ModifyAxis(m_translationYSupplier.getAsDouble(), 2);
         ModifyAxis m_axisRot = new ModifyAxis(m_rotationSupplier.getAsDouble(), 2);
 
         // You can use `new ChassisSpeeds(...)` for robot-oriented movement instead of field-oriented movement
@@ -49,8 +49,8 @@ public class SwerveDrive extends CommandBase{
         if(m_driverController.getRightBumper()){
             m_driveSubsystem.drive(
                 ChassisSpeeds.fromFieldRelativeSpeeds(
-                    m_axisY.m_modifiedValue* 0.125,
                     m_axisX.m_modifiedValue* 0.125,
+                    m_axisY.m_modifiedValue* 0.125,
                     m_axisRot.m_modifiedValue * 0.0125,
                     m_driveSubsystem.getGyroscopeRotation()
 
@@ -61,8 +61,8 @@ public class SwerveDrive extends CommandBase{
         else if(m_driverController.getLeftBumper() || m_operatorController.getDpadDown()){
             m_driveSubsystem.drive(
                 ChassisSpeeds.fromFieldRelativeSpeeds(
-                    m_axisY.m_modifiedValue* 0.0625,
                     m_axisX.m_modifiedValue* 0.0625,
+                    m_axisY.m_modifiedValue* 0.0625,
                     m_axisRot.m_modifiedValue * 0.0125,
                     m_driveSubsystem.getGyroscopeRotation()
                 )
@@ -72,8 +72,8 @@ public class SwerveDrive extends CommandBase{
         else{
             m_driveSubsystem.drive(
                 ChassisSpeeds.fromFieldRelativeSpeeds(
-                    m_axisY.m_modifiedValue* 0.175, //0.25 normally
-                    m_axisX.m_modifiedValue * 0.175, //""
+                    m_axisX.m_modifiedValue* 0.175, //0.25 normally
+                    m_axisY.m_modifiedValue * 0.175, //""
                     m_axisRot.m_modifiedValue * 0.03, //0.03 normally
                     m_driveSubsystem.getGyroscopeRotation()
                 )

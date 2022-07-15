@@ -50,8 +50,8 @@ public class RobotContainer {
     
     
     m_driveSubsystem.setDefaultCommand(new SwerveDrive(m_driveSubsystem, 
+                                      () -> ((m_driverController.getLeftY())) * DriveSubsystem.MAX_VELOCITY_METERS_PER_SECOND,
                                       () -> -((m_driverController.getLeftX())) * DriveSubsystem.MAX_VELOCITY_METERS_PER_SECOND,
-                                      () -> -((m_driverController.getLeftY())) * DriveSubsystem.MAX_VELOCITY_METERS_PER_SECOND,
                                       () -> -((m_driverController.getRightX())) * DriveSubsystem.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND));
 
   } 

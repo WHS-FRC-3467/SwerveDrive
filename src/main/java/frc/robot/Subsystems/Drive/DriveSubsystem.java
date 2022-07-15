@@ -3,7 +3,6 @@ package frc.robot.Subsystems.Drive;
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
-
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.sensors.CANCoder;
 import com.ctre.phoenix.sensors.Pigeon2;
@@ -94,7 +93,9 @@ public class DriveSubsystem extends SubsystemBase {
         // The important thing about how you configure your gyroscope is that rotating
         // the robot counter-clockwise should
         // cause the angle reading to increase until it wraps back over to zero.
-        private final Pigeon2 m_pigeon = new Pigeon2(CanConstants.DRIVETRAIN_PIGEON_ID);
+        Pigeon2 m_pigeon = new Pigeon2(CanConstants.DRIVETRAIN_PIGEON_ID);
+
+        
         // These are our modules. We initialize them in the constructor.
         private final SwerveModule m_frontLeftModule;
         private final SwerveModule m_frontRightModule;
@@ -108,6 +109,7 @@ public class DriveSubsystem extends SubsystemBase {
                 //Creates a tab for the drive train
                 ShuffleboardTab tab = Shuffleboard.getTab("Drivetrain");
 
+                m_pigeon.configMountPoseYaw(90);
                 //initializes modules
                 m_frontLeftModule = Mk4SwerveModuleHelper.createFalcon500(
                         tab.getLayout("Front Left Module", BuiltInLayouts.kList).withSize(2, 4).withPosition(0,0),
@@ -225,7 +227,7 @@ public class DriveSubsystem extends SubsystemBase {
          * @param deg Degrees to set gyro yaw to 
          */
         public void setGyroscope(double deg) {
-                m_pigeon.setYaw(deg);
+               m_pigeon.setYaw(deg);
         }
         
         /**
