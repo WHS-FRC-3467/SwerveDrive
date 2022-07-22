@@ -49,9 +49,9 @@ public class SwerveDrive extends CommandBase{
         if(m_driverController.getRightBumper()){
             m_driveSubsystem.drive(
                 ChassisSpeeds.fromFieldRelativeSpeeds(
-                    m_axisX.m_modifiedValue* 0.125,
-                    m_axisY.m_modifiedValue* 0.125,
-                    m_axisRot.m_modifiedValue * 0.0125,
+                    m_axisX.m_modifiedValue* 0.5,
+                    m_axisY.m_modifiedValue* 0.5,
+                    m_axisRot.m_modifiedValue * 0.5,
                     m_driveSubsystem.getGyroscopeRotation()
 
                 )
@@ -61,9 +61,9 @@ public class SwerveDrive extends CommandBase{
         else if(m_driverController.getLeftBumper() || m_operatorController.getDpadDown()){
             m_driveSubsystem.drive(
                 ChassisSpeeds.fromFieldRelativeSpeeds(
-                    m_axisX.m_modifiedValue* 0.0625,
-                    m_axisY.m_modifiedValue* 0.0625,
-                    m_axisRot.m_modifiedValue * 0.0125,
+                    m_axisX.m_modifiedValue* 0.25,
+                    m_axisY.m_modifiedValue* 0.25,
+                    m_axisRot.m_modifiedValue * 0.25,
                     m_driveSubsystem.getGyroscopeRotation()
                 )
             );  
@@ -72,9 +72,9 @@ public class SwerveDrive extends CommandBase{
         else{
             m_driveSubsystem.drive(
                 ChassisSpeeds.fromFieldRelativeSpeeds(
-                    m_axisX.m_modifiedValue* 0.175, //0.25 normally
-                    m_axisY.m_modifiedValue * 0.175, //""
-                    m_axisRot.m_modifiedValue * 0.03, //0.03 normally
+                    m_axisX.m_modifiedValue, //0.25 normally
+                    m_axisY.m_modifiedValue, //""
+                    m_axisRot.m_modifiedValue, //0.03 normally
                     m_driveSubsystem.getGyroscopeRotation()
                 )
             ); 
