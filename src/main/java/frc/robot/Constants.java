@@ -34,31 +34,10 @@ public final class Constants {
         public static final int BACK_LEFT_MODULE_STEER_ENCODER = 11; 
         public static final int BACK_RIGHT_MODULE_STEER_ENCODER = 12; 
         
+        public static final int CLIMBER_MOTOR = 14;
+        
 		//non drivebase CAN IDs
         public static final int DRIVETRAIN_PIGEON_ID = 13; 
-    }
-
-    public static final class PWMConstants{
-        public static final int Blinkin1 = 0;
-        public static final int Blinkin2 = 4;
-    }
-    
-    public static final class PHConstants{
-
-        public static final int IntakeForwardSolenoid = 0;
-        public static final int IntakeReverseSolenoid = 1;
-        public static final int FixedClimberVerticalSolenoid = 2;
-        public static final int FixedClimberAngledSolenoid = 3;
-        public static final int ExtendingClimberAngledSolenoid = 4;
-        public static final int ExtendingClimberVerticalSolenoid = 5;
-        public static final int HoodForwardSolenoid = 6;
-        public static final int HoodReverseSolenoid = 7;
-    }
-    
-	public static final class DIOConstants{
-        public static final int EntryBeamBreak = 0;
-        public static final int MidTowerBeamBreak = 1;
-        public static final int UpperTowerBeamBreak = 2;
     }
 	
     public static final class RobotConstants {

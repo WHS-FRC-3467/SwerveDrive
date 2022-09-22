@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -11,8 +12,9 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Control.XBoxControllerButton;
 import frc.robot.Control.XBoxControllerEE;
 import frc.robot.Feedback.Cameras.LimelightSubsystem;
+import frc.robot.Subsystems.Climber.Climb;
+import frc.robot.Subsystems.Climber.ClimberSubsystem;
 import frc.robot.Subsystems.Drive.DriveSubsystem;
-import frc.robot.Subsystems.Drive.LimelightAim;
 import frc.robot.Subsystems.Drive.SwerveDrive;
 
 
@@ -26,14 +28,13 @@ import frc.robot.Subsystems.Drive.SwerveDrive;
 public class RobotContainer {
 
   private final DriveSubsystem m_driveSubsystem = new DriveSubsystem();
-  private final LimelightSubsystem m_limelightSubsystem = new LimelightSubsystem();
-
+  private final ClimberSubsystem m_climberSubsystem = new ClimberSubsystem();
   private final XBoxControllerEE m_driverController = new XBoxControllerEE(0);
 
   SendableChooser<Command> m_chooser = new SendableChooser<>();
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {  
-    
+    DriverStation.silenceJoystickConnectionWarning(true);
     // Comment out for simulation
 
     m_chooser.addOption("No Auto", null);
@@ -69,12 +70,11 @@ public class RobotContainer {
     new XBoxControllerButton(m_driverController, XBoxControllerEE.Button.kBack)
         .whenPressed(m_driveSubsystem::zeroGyroscope, m_driveSubsystem);
 
-    // Auto Aim Limelight
-    new XBoxControllerButton(m_driverController, XBoxControllerEE.Button.kB)
-      .whileHeld(new LimelightAim(m_driveSubsystem, m_limelightSubsystem, true, false));
+    new XBoxControllerButton(m_driverController, XBoxControllerEE.Button.kY)
+        .whileHeld(new Climb(m_climberSubsystem, 1));
 
     new XBoxControllerButton(m_driverController, XBoxControllerEE.Button.kA)
-      .whileHeld(new LimelightAim(m_driveSubsystem, m_limelightSubsystem, false, false));
+        .whileHeld(new Climb(m_climberSubsystem, -1));
 
   }
 
