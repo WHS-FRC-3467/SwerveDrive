@@ -16,7 +16,7 @@ public class ModifyAxis {
      */
     public ModifyAxis(double value, int exponent){
         m_value = value;
-        m_deadValue = MathUtil.applyDeadband(value, 0.1);
+        m_deadValue = MathUtil.applyDeadband(value, 0.2);
         m_modifiedValue = Math.copySign(Math.pow(m_deadValue, exponent), m_deadValue);
     }
 

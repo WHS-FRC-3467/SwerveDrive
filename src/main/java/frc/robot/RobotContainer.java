@@ -29,7 +29,9 @@ public class RobotContainer {
 
   private final DriveSubsystem m_driveSubsystem = new DriveSubsystem();
   private final ClimberSubsystem m_climberSubsystem = new ClimberSubsystem();
+
   private final XBoxControllerEE m_driverController = new XBoxControllerEE(0);
+  private final XBoxControllerEE m_opperaterController = new XBoxControllerEE(1);
 
   SendableChooser<Command> m_chooser = new SendableChooser<>();
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -70,10 +72,10 @@ public class RobotContainer {
     new XBoxControllerButton(m_driverController, XBoxControllerEE.Button.kBack)
         .whenPressed(m_driveSubsystem::zeroGyroscope, m_driveSubsystem);
 
-    new XBoxControllerButton(m_driverController, XBoxControllerEE.Button.kY)
+    new XBoxControllerButton(m_opperaterController, XBoxControllerEE.Button.kY)
         .whileHeld(new Climb(m_climberSubsystem, 1));
 
-    new XBoxControllerButton(m_driverController, XBoxControllerEE.Button.kA)
+    new XBoxControllerButton(m_opperaterController, XBoxControllerEE.Button.kA)
         .whileHeld(new Climb(m_climberSubsystem, -1));
 
   }

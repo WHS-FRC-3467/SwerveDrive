@@ -53,7 +53,7 @@ public final class Constants {
         // * Should be measured from center to center.
         public static final double DRIVETRAIN_WHEELBASE_METERS = 0.5334;  // 21 inches
     }
-
+ 
     public static final class DriveConstants{
         public static final double kDeadBand = 0.2;
         public static final boolean PRACTICE = true;
@@ -71,7 +71,8 @@ public final class Constants {
         public static final double BACK_RIGHT_MODULE_STEER_OFFSET = -Math.toRadians(284.1);
 
         // Limelight auto aim X-axis target tolerance. This is the number of degrees
-        // from perfect center that the robot will consider the BasicLimelightAim
+        // from perfect center that the robo\[]
+        //will consider the BasicLimelightAim
         // command "finished".
         public static final double LIMELIGHT_X_TOLERANCE = 1.0;
 
