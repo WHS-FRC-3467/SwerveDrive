@@ -6,6 +6,7 @@ package frc.robot;
 
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
+import frc.robot.Util.Gains;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
@@ -65,10 +66,10 @@ public final class Constants {
             new Translation2d(-RobotConstants.DRIVETRAIN_TRACKWIDTH_METERS / 2.0, -RobotConstants.DRIVETRAIN_WHEELBASE_METERS / 2.0)
         );
 
-        public static final double FRONT_LEFT_MODULE_STEER_OFFSET = -Math.toRadians(277.1);
-        public static final double FRONT_RIGHT_MODULE_STEER_OFFSET = -Math.toRadians(161.8);
-        public static final double BACK_LEFT_MODULE_STEER_OFFSET = -Math.toRadians(116.7); 
-        public static final double BACK_RIGHT_MODULE_STEER_OFFSET = -Math.toRadians(284.1);
+        public static final double FRONT_LEFT_MODULE_STEER_OFFSET = -Math.toRadians(193.0);
+        public static final double FRONT_RIGHT_MODULE_STEER_OFFSET = -Math.toRadians(21.1);
+        public static final double BACK_LEFT_MODULE_STEER_OFFSET = -Math.toRadians(229.7); 
+        public static final double BACK_RIGHT_MODULE_STEER_OFFSET = -Math.toRadians(187.4);
 
         // Limelight auto aim X-axis target tolerance. This is the number of degrees
         // from perfect center that the robo\[]
@@ -88,7 +89,41 @@ public final class Constants {
         //meters per second
         public static final double SimpleAutoVelocity = 1.0;
     }
-
+    public static final class ClimberConstants{
 
     
+        /**
+         * 
+         * PID Gains may have to be adjusted based on the responsiveness of control loop.
+         * kF: 1023 represents output value to Talon at 100%, 6800 represents Velocity units at 100% output
+         * 
+         * 	                                    			   kP   kI   kD   kF   Iz   PeakOut */
+        public final static Gains kGains_Distance = new Gains( 0.5, 0.0, 0.01, .05, 100, 1.00 );
+        public final static Gains kGains_Turning  = new Gains( 0.2, 0.0, 0.0, 0.0, 200, 1.00 );
+	
+	    /* Motor neutral dead-band : Range 0.001 -> 0.25 */
+	    public final static double kNeutralDeadband = 0.001;
+
+	    /* Current Limit for arm calibration */
+        public final static double kCalibCurrentLimit = 10.0;
+
+        /**
+    	 * Set to zero to skip waiting for confirmation.
+	     * Set to nonzero to wait and report to DS if action fails.
+	    */
+	    public final static int kTimeoutMs = 30;
+
+        // Motion Magic constants
+        public static final int kMotionCruiseVelocity = 25000;
+        public static final int kMotionAcceleration = 35000;
+        public static final int kSlowMotionAccel = 19000;
+        public final static int kCurveSmoothing = 0;  /* Valid values: 0 -> 8 */
+        public static final int kTolerance = 500;
+
+        // Setpoints (in encoder ticks) (not tuned)
+        public static final double kRetracted = 0.0;
+
+        public static final double kRaised = 510231.0;
+
+    }
 }

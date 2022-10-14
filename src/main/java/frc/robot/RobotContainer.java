@@ -12,8 +12,12 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Control.XBoxControllerButton;
 import frc.robot.Control.XBoxControllerEE;
 import frc.robot.Feedback.Cameras.LimelightSubsystem;
+import frc.robot.Subsystems.Climber.CalibrateClimber;
 import frc.robot.Subsystems.Climber.Climb;
 import frc.robot.Subsystems.Climber.ClimberSubsystem;
+import frc.robot.Subsystems.Climber.LiftArms;
+import frc.robot.Subsystems.Climber.PullArmsDown;
+import frc.robot.Subsystems.Drive.BasicAutoDrive;
 import frc.robot.Subsystems.Drive.DriveSubsystem;
 import frc.robot.Subsystems.Drive.SwerveDrive;
 
@@ -40,6 +44,8 @@ public class RobotContainer {
     // Comment out for simulation
 
     m_chooser.addOption("No Auto", null);
+    m_chooser.addOption("Drive Back", new BasicAutoDrive(m_driveSubsystem, 1.5, 0.5, 1.0, 0.0));
+
     m_chooser.setDefaultOption("No Auto", null);
 
     SmartDashboard.putData("Auto Chooser", m_chooser);
@@ -57,6 +63,7 @@ public class RobotContainer {
                                       () -> -((m_driverController.getLeftX())) * DriveSubsystem.MAX_VELOCITY_METERS_PER_SECOND,
                                       () -> -((m_driverController.getRightX())) * DriveSubsystem.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND));
 
+    SmartDashboard.putData("Calibrate Climber", new CalibrateClimber(m_climberSubsystem));
   } 
 
   /**
@@ -77,6 +84,14 @@ public class RobotContainer {
 
     new XBoxControllerButton(m_opperaterController, XBoxControllerEE.Button.kA)
         .whileHeld(new Climb(m_climberSubsystem, -1));
+
+
+    
+    new XBoxControllerButton(m_opperaterController, XBoxControllerEE.Button.kY)
+        .whileHeld(new LiftArms(m_climberSubsystem));
+
+    new XBoxControllerButton(m_opperaterController, XBoxControllerEE.Button.kA)
+        .whileHeld(new PullArmsDown(m_climberSubsystem));
 
   }
 

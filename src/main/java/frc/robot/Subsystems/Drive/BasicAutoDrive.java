@@ -53,11 +53,10 @@ public class BasicAutoDrive extends CommandBase {
     if(Math.abs(m_drive.getAverageEncoder()) <= Math.abs(m_finalPosition)){
       m_drive.drive(
         //Drive robot at constructor speeds
-        ChassisSpeeds.fromFieldRelativeSpeeds(
+        new ChassisSpeeds (
             -m_XTranslation,
             -m_YTranslation,
-            m_rotation,
-            m_drive.getGyroscopeRotation()
+            m_rotation
         )
       );      
       //Do not end command

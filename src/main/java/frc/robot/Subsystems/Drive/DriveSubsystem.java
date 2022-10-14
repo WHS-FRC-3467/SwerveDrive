@@ -63,7 +63,7 @@ public class DriveSubsystem extends SubsystemBase {
         // By default this value is setup for a Mk3 standard module using Falcon500s to
         // drive.
         // The maximum velocity of the robot in meters per second.
-        public static final double MAX_VELOCITY_METERS_PER_SECOND = 1.5;
+        public static final double MAX_VELOCITY_METERS_PER_SECOND = 1;
         //6380.0 / 60.0 * SdsModuleConfigurations.MK4_L2.getDriveReduction() * SdsModuleConfigurations.MK4_L2.getWheelDiameter() * Math.PI;
 
 
@@ -202,7 +202,7 @@ public class DriveSubsystem extends SubsystemBase {
                 //Normalize wheel speeds
                 SwerveDriveKinematics.desaturateWheelSpeeds(states, MAX_VELOCITY_METERS_PER_SECOND);
                 
-                //sets modules to the states
+                // //sets modules to the states
                 m_frontLeftModule.set(states[0].speedMetersPerSecond / MAX_VELOCITY_METERS_PER_SECOND * MAX_VOLTAGE, states[0].angle.getRadians());
                 m_frontRightModule.set(states[1].speedMetersPerSecond / MAX_VELOCITY_METERS_PER_SECOND * MAX_VOLTAGE, states[1].angle.getRadians());
                 m_backLeftModule.set(states[2].speedMetersPerSecond / MAX_VELOCITY_METERS_PER_SECOND * MAX_VOLTAGE, states[2].angle.getRadians());
