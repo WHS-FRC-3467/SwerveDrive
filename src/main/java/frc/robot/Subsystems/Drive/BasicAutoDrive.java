@@ -48,25 +48,27 @@ public class BasicAutoDrive extends CommandBase {
 
   @Override
   public void execute() {
-    //If the distance traveled is less than the distance needed to go then it will drive at the direction and velocoty from the construtor
+       //If the distance traveled is less than the distance needed to go then it will drive at the direction and velocoty from the construtor
     //else it will end the command
     if(Math.abs(m_drive.getAverageEncoder()) <= Math.abs(m_finalPosition)){
       m_drive.drive(
         //Drive robot at constructor speeds
         new ChassisSpeeds (
-            -m_XTranslation,
-            -m_YTranslation,
+            m_XTranslation,
+            m_YTranslation,
             m_rotation
         )
       );      
-      //Do not end command
-      m_end = false;
-    }
-    else{
-      //Stop drivebase and end command
-      m_drive.drive(new ChassisSpeeds(0.0, 0.0, 0.0));
-      m_end = true;
-    }
+        //Do not end command
+        m_end = false;
+      }
+      else{
+        //Stop drivebase and end command
+        m_drive.drive(new ChassisSpeeds(0.0, 0.0, 0.0));
+        m_end = true;
+      }  
+    
+
     
     //prints goal distance and current distance traveled
     System.out.println(m_finalPosition);

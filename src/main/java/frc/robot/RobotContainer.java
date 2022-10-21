@@ -4,11 +4,13 @@
 
 package frc.robot;
 
+
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.Control.XBoxControllerButton;
 import frc.robot.Control.XBoxControllerEE;
 import frc.robot.Feedback.Cameras.LimelightSubsystem;
@@ -42,9 +44,8 @@ public class RobotContainer {
   public RobotContainer() {  
     DriverStation.silenceJoystickConnectionWarning(true);
     // Comment out for simulation
-
     m_chooser.addOption("No Auto", null);
-    m_chooser.addOption("Drive Back", new BasicAutoDrive(m_driveSubsystem, 1.5, 0.5, 1.0, 0.0));
+    m_chooser.addOption("Drive Back", new BasicAutoDrive(m_driveSubsystem, 2.0, -0.2, 0.0, 0.0));
 
     m_chooser.setDefaultOption("No Auto", null);
 
@@ -59,8 +60,8 @@ public class RobotContainer {
     
     
     m_driveSubsystem.setDefaultCommand(new SwerveDrive(m_driveSubsystem, 
+                                      () -> ((m_driverController.getLeftX())) * DriveSubsystem.MAX_VELOCITY_METERS_PER_SECOND,
                                       () -> ((m_driverController.getLeftY())) * DriveSubsystem.MAX_VELOCITY_METERS_PER_SECOND,
-                                      () -> -((m_driverController.getLeftX())) * DriveSubsystem.MAX_VELOCITY_METERS_PER_SECOND,
                                       () -> -((m_driverController.getRightX())) * DriveSubsystem.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND));
 
     SmartDashboard.putData("Calibrate Climber", new CalibrateClimber(m_climberSubsystem));
@@ -77,7 +78,7 @@ public class RobotContainer {
       
     // Back button zeros the gyroscope
     new XBoxControllerButton(m_driverController, XBoxControllerEE.Button.kBack)
-        .whenPressed(m_driveSubsystem::zeroGyroscope, m_driveSubsystem);
+        .whenPressed(new InstantCommand(m_driveSubsystem::zeroGyroscope, m_driveSubsystem));
 
     new XBoxControllerButton(m_opperaterController, XBoxControllerEE.Button.kY)
         .whileHeld(new Climb(m_climberSubsystem, 1));
@@ -87,11 +88,15 @@ public class RobotContainer {
 
 
     
-    new XBoxControllerButton(m_opperaterController, XBoxControllerEE.Button.kY)
-        .whileHeld(new LiftArms(m_climberSubsystem));
+    new XBoxControllerButton(m_opperaterController, XBoxControllerEE.Button.kBack)
+        .whenPressed(new LiftArms(m_climberSubsystem));
 
-    new XBoxControllerButton(m_opperaterController, XBoxControllerEE.Button.kA)
-        .whileHeld(new PullArmsDown(m_climberSubsystem));
+    new XBoxControllerButton(m_opperaterController, XBoxControllerEE.Button.kStart)
+        .whenPressed(new PullArmsDown(m_climberSubsystem));
+
+        
+    // new XBoxControllerButton(m_opperaterController, XBoxControllerEE.Button.kRightBumper)
+    //   .whenPressed(new InstantCommand(m_climberSubsystem::cancelClimb, m_climberSubsystem));
 
   }
 

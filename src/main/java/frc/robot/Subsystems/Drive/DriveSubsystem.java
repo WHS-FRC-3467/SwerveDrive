@@ -63,9 +63,9 @@ public class DriveSubsystem extends SubsystemBase {
         // By default this value is setup for a Mk3 standard module using Falcon500s to
         // drive.
         // The maximum velocity of the robot in meters per second.
-        public static final double MAX_VELOCITY_METERS_PER_SECOND = 1;
+        public static final double MAX_VELOCITY_METERS_PER_SECOND = 0.9;
         //6380.0 / 60.0 * SdsModuleConfigurations.MK4_L2.getDriveReduction() * SdsModuleConfigurations.MK4_L2.getWheelDiameter() * Math.PI;
-
+        double m_timeDelay;
 
         // The maximum angular velocity of the robot in radians per second.
         // This is a measure of how fast the robot can rotate in place.
@@ -187,7 +187,6 @@ public class DriveSubsystem extends SubsystemBase {
 
                 //puts gyro rotation on dashboard
                 tab.add("gyro rot", getGyroscopeRotation().getDegrees());
-        
         }
 
         @Override
@@ -227,7 +226,7 @@ public class DriveSubsystem extends SubsystemBase {
         public void setGyroscope(double deg) {
                m_pigeon.setYaw(deg);
         }
-        
+      
         /**
          * @param chassisSpeeds Chasis speeds 
          * Sets chasis speeds passed into the void as the member variable for chasis speeds  
@@ -315,7 +314,7 @@ public class DriveSubsystem extends SubsystemBase {
          * @return The modified value of the joystick
          */
         public double modifyAxis(double value, int exponent){
-                double deadValue = MathUtil.applyDeadband(value, DriveConstants.kDeadBand);
+                double deadValue = MathUtil.applyDeadband(value, DriveConstants.DEADBAND);
                 double quarticValue = Math.copySign(Math.pow(deadValue, exponent), deadValue);
                 return quarticValue;
         }

@@ -22,13 +22,13 @@ public final class Constants {
 
     public static final class CanConstants{
         //drivebase CAN IDs 
-        public static final int FRONT_LEFT_MODULE_DRIVE_MOTOR = 1;
-        public static final int FRONT_LEFT_MODULE_STEER_MOTOR = 2;
+        public static final int FRONT_LEFT_MODULE_DRIVE_MOTOR = 1; 
+        public static final int FRONT_LEFT_MODULE_STEER_MOTOR = 2; 
         public static final int BACK_LEFT_MODULE_DRIVE_MOTOR = 3; 
-        public static final int BACK_LEFT_MODULE_STEER_MOTOR = 4;
+        public static final int BACK_LEFT_MODULE_STEER_MOTOR = 4; 
         public static final int FRONT_RIGHT_MODULE_DRIVE_MOTOR = 5; 
         public static final int FRONT_RIGHT_MODULE_STEER_MOTOR = 6; 
-        public static final int BACK_RIGHT_MODULE_DRIVE_MOTOR = 7;
+        public static final int BACK_RIGHT_MODULE_DRIVE_MOTOR = 7; 
         public static final int BACK_RIGHT_MODULE_STEER_MOTOR = 8; 
         public static final int FRONT_LEFT_MODULE_STEER_ENCODER = 9; 
         public static final int FRONT_RIGHT_MODULE_STEER_ENCODER = 10; 
@@ -56,7 +56,7 @@ public final class Constants {
     }
  
     public static final class DriveConstants{
-        public static final double kDeadBand = 0.2;
+        public static final double DEADBAND= 0.2;
         public static final boolean PRACTICE = true;
     
         public static final SwerveDriveKinematics DRIVETRAIN_KINEMATICS = new SwerveDriveKinematics(
@@ -66,28 +66,11 @@ public final class Constants {
             new Translation2d(-RobotConstants.DRIVETRAIN_TRACKWIDTH_METERS / 2.0, -RobotConstants.DRIVETRAIN_WHEELBASE_METERS / 2.0)
         );
 
-        public static final double FRONT_LEFT_MODULE_STEER_OFFSET = -Math.toRadians(193.0);
-        public static final double FRONT_RIGHT_MODULE_STEER_OFFSET = -Math.toRadians(21.1);
-        public static final double BACK_LEFT_MODULE_STEER_OFFSET = -Math.toRadians(229.7); 
-        public static final double BACK_RIGHT_MODULE_STEER_OFFSET = -Math.toRadians(187.4);
+        public static final double FRONT_LEFT_MODULE_STEER_OFFSET = -Math.toRadians(103.0);
+        public static final double FRONT_RIGHT_MODULE_STEER_OFFSET = -Math.toRadians(291.1);
+        public static final double BACK_LEFT_MODULE_STEER_OFFSET = -Math.toRadians(139.7); 
+        public static final double BACK_RIGHT_MODULE_STEER_OFFSET = -Math.toRadians(97.4);
 
-        // Limelight auto aim X-axis target tolerance. This is the number of degrees
-        // from perfect center that the robo\[]
-        //will consider the BasicLimelightAim
-        // command "finished".
-        public static final double LIMELIGHT_X_TOLERANCE = 1.0;
-
-        // Maximum Limelight auto-aim rotation velocity in radians per second.
-        public static final double LIMELIGHT_X_VELOCITY_LIMIT = 0.5;
-
-        // Limelight auto-aim X-axis P-gain.
-        public static final double LIMELIGHT_X_P = 10.0;
-
-            
-        public static final double precisionSpeed = 0.25;
-
-        //meters per second
-        public static final double SimpleAutoVelocity = 1.0;
     }
     public static final class ClimberConstants{
 
@@ -98,8 +81,7 @@ public final class Constants {
          * kF: 1023 represents output value to Talon at 100%, 6800 represents Velocity units at 100% output
          * 
          * 	                                    			   kP   kI   kD   kF   Iz   PeakOut */
-        public final static Gains kGains_Distance = new Gains( 0.5, 0.0, 0.01, .05, 100, 1.00 );
-        public final static Gains kGains_Turning  = new Gains( 0.2, 0.0, 0.0, 0.0, 200, 1.00 );
+        public final static Gains kClimberGains = new Gains(0.1, 0.0, 0.0, 0, 0, 1.00 );
 	
 	    /* Motor neutral dead-band : Range 0.001 -> 0.25 */
 	    public final static double kNeutralDeadband = 0.001;
@@ -114,16 +96,15 @@ public final class Constants {
 	    public final static int kTimeoutMs = 30;
 
         // Motion Magic constants
-        public static final int kMotionCruiseVelocity = 25000;
-        public static final int kMotionAcceleration = 35000;
-        public static final int kSlowMotionAccel = 19000;
-        public final static int kCurveSmoothing = 0;  /* Valid values: 0 -> 8 */
         public static final int kTolerance = 500;
 
         // Setpoints (in encoder ticks) (not tuned)
         public static final double kRetracted = 0.0;
 
-        public static final double kRaised = 510231.0;
+        public static final double kOffGround = 30000.0;
+
+    
+        public static final double kRaised = 460000.0;
 
     }
 }

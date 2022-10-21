@@ -26,18 +26,8 @@ public class LiftArms extends CommandBase {
   @Override
   public void execute() {
     // Extend Arms to Maximum Length
-    if(m_climber.getClimberPosition()< ClimberConstants.kRaised || m_climber.getClimberPosition() > -300){
-      m_climber.drive(1.0);
-      m_end = false;
-    }
-    else if (m_climber.getClimberPosition()> ClimberConstants.kRaised || m_climber.getClimberPosition() < -300){
-      m_climber.drive(-1.0);
-      m_end = false;
-    }
-    else{
-      m_climber.drive(0.0);
-      m_end = true;
-    }
+    m_climber.setClimberPosition(ClimberConstants.kRaised);
+    // m_end = m_climber.atPosition();
   }
 
   @Override
